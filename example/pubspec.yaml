@@ -1,0 +1,20 @@
+name: system_design_example
+description: Example app for the system_design component library.
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.11.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  system_design:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

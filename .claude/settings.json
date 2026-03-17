@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://github.com/rsms/inter/releases/download/v4.0/Inter-4.0.zip\" -o /tmp/inter.zip)",
+      "Bash(unzip -o /tmp/inter.zip -d /tmp/inter_extracted)",
+      "Read(//private/tmp/inter_extracted/**)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter create:*)",
+      "Bash(git add:*)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/inter_extracted/extras/ttf"
+    ]
+  }
+}
