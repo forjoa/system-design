@@ -11,6 +11,14 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.1.4] - 2026-03-17
+
+### Added
+- `example-custom-colors/` — new example app (iOS + Android) demonstrating runtime palette switching. Defines three `const SystemDesignColors` palettes (Ocean, Forest, Sunset) and passes them to `SystemDesignThemeData.dark(colors: ...)`. All components adapt automatically.
+- README: added custom colors usage guide and links to both example apps.
+
+---
+
 ## [0.1.3] - 2026-03-17
 
 ### Fixed

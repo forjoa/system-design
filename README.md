@@ -299,9 +299,32 @@ Container(
 
 ---
 
-## Example
+## Examples
 
-See [`example/lib/main.dart`](example/lib/main.dart) for a full working showcase of all components and the router.
+### Full component showcase
+[`example/`](example/) — demonstrates all components (Button, List, Dialog, Toaster) and the router with the default black & white palette.
+
+### Custom colors
+[`example-custom-colors/`](example-custom-colors/) — demonstrates runtime palette switching. Three hand-crafted palettes (Ocean, Forest, Sunset) are defined as plain `const SystemDesignColors(...)` instances and passed to `SystemDesignThemeData.dark(colors: ...)`. Every component — buttons, list, dialog, toaster — updates automatically.
+
+```dart
+const myColors = SystemDesignColors(
+  background: Color(0xFF0D1B2A),
+  surface: Color(0xFF1B2E42),
+  foreground: Color(0xFFE8F4FD),
+  primary: Color(0xFF4A9ECA),
+  primaryForeground: Color(0xFF0D1B2A),
+  // ... other semantic roles
+);
+
+MaterialApp(
+  theme: SystemDesignThemeData.dark(colors: myColors),
+  builder: (context, child) => SdToasterScope(child: child!),
+  home: const MyHomePage(),
+)
+```
+
+No subclassing, no special files, no registration — just pass a `SystemDesignColors` with your values and every component picks them up.
 
 ---
 
