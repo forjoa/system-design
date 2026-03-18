@@ -5,6 +5,7 @@ import '../components/button/sd_button_theme.dart';
 import '../components/list/sd_list_theme.dart';
 import '../components/dialog/sd_dialog_theme.dart';
 import '../components/toaster/sd_toaster_theme.dart';
+import '../components/nav_bar/sd_nav_bar_theme.dart';
 
 /// [BuildContext] extension accessors for system design tokens.
 ///
@@ -37,4 +38,9 @@ extension SdThemeContext on BuildContext {
   SdToasterTheme get sdToasterTheme =>
       Theme.of(this).extension<SdToasterTheme>() ??
       SdToasterTheme.fromSdTheme(sdTheme);
+
+  /// Per-component theme for [SdNavBar].
+  SdNavBarTheme get sdNavBarTheme =>
+      Theme.of(this).extension<SdNavBarTheme>() ??
+      SdNavBarTheme.fromSdTheme(sdTheme);
 }

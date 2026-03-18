@@ -10,7 +10,7 @@ A minimalist, zero-dependency Flutter component library with a black & white des
 - **Bundled Inter font** — no `google_fonts` dependency needed. Inter is included as package assets and resolved automatically.
 - **Dark mode** — `SystemDesignThemeData.dark()` inverts the palette. All components adapt automatically.
 - **Zero external dependencies** — only the Flutter SDK.
-- **Five components** — `SdButton`, `SdList`/`SdListItem`, `SdDialog`, `SdToaster`, and a Navigator 2.0 declarative `SdRouter`.
+- **Six components** — `SdButton`, `SdList`/`SdListItem`, `SdDialog`, `SdToaster`, a Navigator 2.0 declarative `SdRouter`, and a floating `SdNavBar`.
 - **Per-component theme overrides** — each component has its own `ThemeExtension` (`SdButtonTheme`, etc.) for global customisation, plus an optional `style:` parameter for per-instance overrides.
 
 ---
@@ -185,6 +185,64 @@ SdToasterScope.of(context).show(
 ```
 
 Variants: `defaultVariant`, `success`, `warning`, `destructive`. All variants are monochrome — the icon shape distinguishes them, not color.
+
+---
+
+### SdNavBar
+
+A floating, pill-shaped bottom navigation bar that integrates with `SdRouterConfig`. It reads the current route automatically and highlights the active tab.
+
+Place it inside a `SdShellRoute`'s shell as `Scaffold.bottomNavigationBar`. Use `extendBody: true` on the `Scaffold` so page content flows behind the floating bar.
+
+```dart
+SdShellRoute(
+  path: '/',
+  shell: (context, child) => Scaffold(
+    backgroundColor: context.sdTheme.colors.background,
+    extendBody: true,
+    body: child,
+    bottomNavigationBar: SdNavBar(
+      items: [
+        SdNavBarItem(path: '/home',    icon: const Icon(Icons.home_outlined),   label: 'Home'),
+        SdNavBarItem(path: '/search',  icon: const Icon(Icons.search),           label: 'Search'),
+        SdNavBarItem(path: '/profile', icon: const Icon(Icons.person_outlined),  label: 'Profile'),
+      ],
+    ),
+  ),
+  routes: [
+    SdRoute(path: '/home',    builder: (_, _) => const HomePage()),
+    SdRoute(path: '/search',  builder: (_, _) => const SearchPage()),
+    SdRoute(path: '/profile', builder: (_, _) => const ProfilePage()),
+  ],
+)
+```
+
+**`SdNavBarItem` parameters:**
+
+| Parameter | Type | Description |
+|---|---|---|
+| `path` | `String` | Route path this tab navigates to |
+| `icon` | `Widget` | Icon widget |
+| `label` | `String` | Text label shown below the icon |
+
+**`SdNavBar` parameters:**
+
+| Parameter | Type | Default |
+|---|---|---|
+| `items` | `List<SdNavBarItem>` | required (min 2) |
+| `style` | `SdNavBarStyle?` | — |
+
+Global defaults live in `SdNavBarTheme` (registered automatically via `SystemDesignThemeData`). Override per-instance with `SdNavBarStyle`:
+
+```dart
+SdNavBar(
+  items: [...],
+  style: const SdNavBarStyle(
+    showLabels: false,          // icon-only mode
+    iconSize: 20,
+  ),
+)
+```
 
 ---
 

@@ -9,6 +9,7 @@ import '../components/button/sd_button_theme.dart';
 import '../components/list/sd_list_theme.dart';
 import '../components/dialog/sd_dialog_theme.dart';
 import '../components/toaster/sd_toaster_theme.dart';
+import '../components/nav_bar/sd_nav_bar_theme.dart';
 
 /// Factory that produces a fully configured [ThemeData] for the system design
 /// library.
@@ -37,6 +38,7 @@ abstract final class SystemDesignThemeData {
     SdListTheme? listTheme,
     SdDialogTheme? dialogTheme,
     SdToasterTheme? toasterTheme,
+    SdNavBarTheme? navBarTheme,
   }) {
     final sdTheme = SystemDesignTheme.light(
       fontFamily: fontFamily,
@@ -52,6 +54,7 @@ abstract final class SystemDesignThemeData {
       listTheme: listTheme,
       dialogTheme: dialogTheme,
       toasterTheme: toasterTheme,
+      navBarTheme: navBarTheme,
     );
   }
 
@@ -66,6 +69,7 @@ abstract final class SystemDesignThemeData {
     SdListTheme? listTheme,
     SdDialogTheme? dialogTheme,
     SdToasterTheme? toasterTheme,
+    SdNavBarTheme? navBarTheme,
   }) {
     final sdTheme = SystemDesignTheme.dark(
       fontFamily: fontFamily,
@@ -81,6 +85,7 @@ abstract final class SystemDesignThemeData {
       listTheme: listTheme,
       dialogTheme: dialogTheme,
       toasterTheme: toasterTheme,
+      navBarTheme: navBarTheme,
     );
   }
 
@@ -91,6 +96,7 @@ abstract final class SystemDesignThemeData {
     SdListTheme? listTheme,
     SdDialogTheme? dialogTheme,
     SdToasterTheme? toasterTheme,
+    SdNavBarTheme? navBarTheme,
   }) {
     final c = sdTheme.colors;
     return ThemeData(
@@ -114,6 +120,7 @@ abstract final class SystemDesignThemeData {
         listTheme ?? SdListTheme.fromSdTheme(sdTheme),
         dialogTheme ?? SdDialogTheme.fromSdTheme(sdTheme),
         toasterTheme ?? SdToasterTheme.fromSdTheme(sdTheme),
+        navBarTheme ?? SdNavBarTheme.fromSdTheme(sdTheme),
       ],
     );
   }

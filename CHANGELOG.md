@@ -11,6 +11,22 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.1.5] - 2026-03-18
+
+### Added
+- `SdNavBar` — floating, pill-shaped bottom navigation bar that integrates with `SdRouterConfig`. Reactively tracks the active route via `ListenableBuilder` on `SdRouterDelegate`. Renders icon + label per tab with an animated pill indicator behind the active item.
+- `SdNavBarItem` — data class holding `path`, `icon`, and `label` for each tab.
+- `SdNavBarTheme` — `ThemeExtension` with tokens for `backgroundColor`, `activeColor`, `inactiveColor`, `indicatorColor`, `borderColor`, `borderRadius`, `margin`, `padding`, `itemPadding`, `iconSize`, `labelStyle`, and `showLabels`. Registered automatically in `SystemDesignThemeData.light()` / `.dark()`.
+- `SdNavBarStyle` — per-instance style override for `SdNavBar`.
+- `context.sdNavBarTheme` — `BuildContext` extension accessor.
+- README: added `SdNavBar` component section with usage example and parameter tables.
+- `example/` updated to use `SdShellRoute` + `SdNavBar` with `lucide_icons` (added as example-only dependency).
+
+### Changed
+- `SdButton` filled and destructive variants now render a subtle top-to-bottom gradient (white blend `26%` at the top) controlled by the new `SdButtonTheme.gradientHighlightAmount` token. Ghost and outlined variants are unaffected. Set `gradientHighlightAmount: 0` to disable.
+
+---
+
 ## [0.1.4] - 2026-03-17
 
 ### Added

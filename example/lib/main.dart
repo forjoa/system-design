@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:system_design/system_design.dart';
 
 void main() {
@@ -16,14 +17,69 @@ class ExampleApp extends StatelessWidget {
       darkTheme: SystemDesignThemeData.dark(),
       builder: (context, child) => SdToasterScope(child: child!),
       routerConfig: SdRouterConfig(
+        initialLocation: '/home',
         routes: [
-          SdRoute(path: '/', builder: (_, _) => const HomePage()),
-          SdRoute(path: '/buttons', builder: (_, _) => const ButtonsPage()),
-          SdRoute(path: '/lists', builder: (_, _) => const ListsPage()),
-          SdRoute(path: '/dialog', builder: (_, _) => const DialogPage()),
-          SdRoute(path: '/toaster', builder: (_, _) => const ToasterPage()),
+          SdShellRoute(
+            path: '/',
+            shell: (context, child) => _AppShell(body: child),
+            routes: [
+              SdRoute(path: '/home',     builder: (_, _) => const HomePage()),
+              SdRoute(path: '/buttons',  builder: (_, _) => const ButtonsPage()),
+              SdRoute(path: '/lists',    builder: (_, _) => const ListsPage()),
+              SdRoute(path: '/dialog',   builder: (_, _) => const DialogPage()),
+              SdRoute(path: '/toaster',  builder: (_, _) => const ToasterPage()),
+            ],
+          ),
         ],
       ).build(),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// App shell with floating nav bar
+// ---------------------------------------------------------------------------
+
+class _AppShell extends StatelessWidget {
+  const _AppShell({required this.body});
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.sdTheme;
+    return Scaffold(
+      backgroundColor: theme.colors.background,
+      extendBody: true,
+      body: body,
+      bottomNavigationBar: SdNavBar(
+        items: const [
+          SdNavBarItem(
+            path: '/home',
+            icon: Icon(LucideIcons.home),
+            label: 'Home',
+          ),
+          SdNavBarItem(
+            path: '/buttons',
+            icon: Icon(LucideIcons.mousePointer2),
+            label: 'Buttons',
+          ),
+          SdNavBarItem(
+            path: '/lists',
+            icon: Icon(LucideIcons.list),
+            label: 'Lists',
+          ),
+          SdNavBarItem(
+            path: '/dialog',
+            icon: Icon(LucideIcons.messageSquare),
+            label: 'Dialog',
+          ),
+          SdNavBarItem(
+            path: '/toaster',
+            icon: Icon(LucideIcons.bell),
+            label: 'Toaster',
+          ),
+        ],
+      ),
     );
   }
 }
@@ -38,44 +94,28 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.sdTheme;
-    return Scaffold(
-      backgroundColor: theme.colors.background,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(theme.spacing.lg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('system_design', style: theme.typography.displayMedium.copyWith(color: theme.colors.foreground)),
-              SizedBox(height: theme.spacing.sm),
-              Text('Component showcase', style: theme.typography.bodyLarge.copyWith(color: theme.colors.muted)),
-              SizedBox(height: theme.spacing.xl),
-              _NavItem(label: 'Buttons', path: '/buttons'),
-              _NavItem(label: 'Lists', path: '/lists'),
-              _NavItem(label: 'Dialog', path: '/dialog'),
-              _NavItem(label: 'Toaster', path: '/toaster'),
-            ],
-          ),
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(theme.spacing.lg),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'system_design',
+              style: theme.typography.displayMedium.copyWith(color: theme.colors.foreground),
+            ),
+            SizedBox(height: theme.spacing.sm),
+            Text(
+              'Component showcase',
+              style: theme.typography.bodyLarge.copyWith(color: theme.colors.muted),
+            ),
+            SizedBox(height: theme.spacing.xl),
+            Text(
+              'Use the navigation bar below to explore components.',
+              style: theme.typography.bodyMedium.copyWith(color: theme.colors.muted),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class _NavItem extends StatelessWidget {
-  const _NavItem({required this.label, required this.path});
-  final String label;
-  final String path;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: context.sdTheme.spacing.sm),
-      child: SdButton(
-        label: label,
-        variant: SdButtonVariant.outlined,
-        size: SdButtonSize.lg,
-        onPressed: () => context.sdRouter.push(path),
       ),
     );
   }
@@ -149,12 +189,12 @@ class ButtonsPage extends StatelessWidget {
               children: [
                 SdButton(
                   label: 'Leading icon',
-                  icon: const Icon(Icons.add),
+                  icon: const Icon(LucideIcons.plus),
                   onPressed: () {},
                 ),
                 SdButton(
                   label: 'Trailing icon',
-                  trailingIcon: const Icon(Icons.arrow_forward),
+                  trailingIcon: const Icon(LucideIcons.arrowRight),
                   variant: SdButtonVariant.outlined,
                   onPressed: () {},
                 ),
@@ -195,8 +235,8 @@ class ListsPage extends StatelessWidget {
         ),
         itemBuilder: (context, item, index) => SdListItem(
           title: Text(item),
-          leading: const Icon(Icons.circle_outlined),
-          trailing: const Icon(Icons.chevron_right),
+          leading: const Icon(LucideIcons.circle),
+          trailing: const Icon(LucideIcons.chevronRight),
           onTap: () {},
         ),
       ),
@@ -227,6 +267,7 @@ class DialogPage extends StatelessWidget {
           padding: EdgeInsets.all(theme.spacing.lg),
           child: SdButton(
             label: 'Open Dialog',
+            icon: const Icon(LucideIcons.alertTriangle),
             onPressed: () => showSdDialog(
               context: context,
               builder: (_) => SdDialog(

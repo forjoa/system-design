@@ -46,3 +46,8 @@ export 'src/components/toaster/sd_toaster_theme.dart';
 export 'src/components/router/sd_router.dart';
 export 'src/components/router/sd_route.dart';
 export 'src/components/router/sd_page_transition.dart';
+
+// NavBar
+export 'src/components/nav_bar/sd_nav_bar.dart';
+export 'src/components/nav_bar/sd_nav_bar_style.dart';
+export 'src/components/nav_bar/sd_nav_bar_theme.dart';
