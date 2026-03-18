@@ -23,6 +23,7 @@ class SdButtonTheme extends ThemeExtension<SdButtonTheme> {
     required this.pressedScale,
     required this.iconSize,
     required this.loadingSize,
+    this.gradientHighlightAmount = 0.26,
   });
 
   /// Base styles for each variant (colors only — size-specific values set separately).
@@ -49,6 +50,10 @@ class SdButtonTheme extends ThemeExtension<SdButtonTheme> {
 
   /// Loading indicator size in pixels.
   final double loadingSize;
+
+  /// How much white is blended into the top of the button gradient.
+  /// 0.0 = no gradient, 1.0 = fully white. Default is 0.10 (subtle).
+  final double gradientHighlightAmount;
 
   // ---------------------------------------------------------------------------
   // Factory: derive defaults from SystemDesignTheme tokens
@@ -116,6 +121,7 @@ class SdButtonTheme extends ThemeExtension<SdButtonTheme> {
     double? pressedScale,
     double? iconSize,
     double? loadingSize,
+    double? gradientHighlightAmount,
   }) {
     return SdButtonTheme(
       filledStyle: filledStyle ?? this.filledStyle,
@@ -132,6 +138,7 @@ class SdButtonTheme extends ThemeExtension<SdButtonTheme> {
       pressedScale: pressedScale ?? this.pressedScale,
       iconSize: iconSize ?? this.iconSize,
       loadingSize: loadingSize ?? this.loadingSize,
+      gradientHighlightAmount: gradientHighlightAmount ?? this.gradientHighlightAmount,
     );
   }
 
@@ -153,6 +160,8 @@ class SdButtonTheme extends ThemeExtension<SdButtonTheme> {
       pressedScale: pressedScale + (other.pressedScale - pressedScale) * t,
       iconSize: iconSize + (other.iconSize - iconSize) * t,
       loadingSize: loadingSize + (other.loadingSize - loadingSize) * t,
+      gradientHighlightAmount:
+          gradientHighlightAmount + (other.gradientHighlightAmount - gradientHighlightAmount) * t,
     );
   }
 }

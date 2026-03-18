@@ -63,6 +63,19 @@ class _SdButtonState extends State<SdButton> {
   void _onTapUp(_) => setState(() => _pressed = false);
   void _onTapCancel() => setState(() => _pressed = false);
 
+  LinearGradient _buildGradient(SdButtonVariant variant, Color bg, double amount) {
+    final bool hasSolidBackground =
+        variant == SdButtonVariant.filled || variant == SdButtonVariant.destructive;
+    final Color top = hasSolidBackground
+        ? Color.lerp(bg, const Color(0xFFFFFFFF), amount)!
+        : bg;
+    return LinearGradient(
+      begin: Alignment.bottomCenter,
+      end: Alignment.topCenter,
+      colors: [bg, top],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = context.sdButtonTheme;
@@ -125,7 +138,7 @@ class _SdButtonState extends State<SdButton> {
             duration: const Duration(milliseconds: 150),
             padding: padding,
             decoration: BoxDecoration(
-              color: bg,
+              gradient: _buildGradient(widget.variant, bg, theme.gradientHighlightAmount),
               borderRadius: borderRadius,
               border: Border.all(color: border),
             ),
