@@ -51,3 +51,7 @@ export 'src/components/router/sd_page_transition.dart';
 export 'src/components/nav_bar/sd_nav_bar.dart';
 export 'src/components/nav_bar/sd_nav_bar_style.dart';
 export 'src/components/nav_bar/sd_nav_bar_theme.dart';
+
+// TextField
+export 'src/components/text_field/sd_text_field.dart';
+export 'src/components/text_field/sd_text_field_theme.dart';
