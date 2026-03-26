@@ -142,7 +142,8 @@ class _SdButtonState extends State<SdButton> {
               borderRadius: borderRadius,
               border: Border.all(color: border),
             ),
-            child: Row(
+            child: Center(
+              child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (widget.isLoading)
@@ -175,6 +176,7 @@ class _SdButtonState extends State<SdButton> {
                     ),
                   ),
               ],
+              ),
             ),
           ),
         ),
