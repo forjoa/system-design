@@ -233,7 +233,7 @@ class _AnimatedToastState extends State<_AnimatedToast>
       ),
     );
 
-    _translateY = Tween<double>(begin: 16, end: 0).animate(curvedIn);
+    _translateY = Tween<double>(begin: -16, end: 0).animate(curvedIn);
     _scale = Tween<double>(begin: 0.95, end: 1.0).animate(curvedIn);
 
     _controller.forward();
